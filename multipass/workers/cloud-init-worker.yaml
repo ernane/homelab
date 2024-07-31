@@ -2,10 +2,10 @@ package_update: true
 package_upgrade: false
 package_reboot_if_required: true
 
-packages:
-  - git
-  - curl
-  - vim
+# packages:
+#   - git
+#   - curl
+#   - vim
 
 users:
   - default
@@ -16,9 +16,9 @@ users:
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2QVXgFtnegwHXVnxNfGL2+mQBImraGTbCKxihXRLHw vmuser
 
-runcmd:
-  - snap install microk8s --classic
-  - microk8s status --wait-ready
-  - microk8s join 10.127.121.25:25000/276c505f2fafd6edc363b2fae68d55a7/6c1a2f2441e0 --worker
+# runcmd:
+#   - snap install microk8s --classic
+#   - microk8s status --wait-ready
+#   - microk8s join 10.127.121.25:25000/276c505f2fafd6edc363b2fae68d55a7/6c1a2f2441e0 --worker
 
-final_message: "The system is finally up, after $UPTIME seconds"
+# final_message: "The system is finally up, after $UPTIME seconds"

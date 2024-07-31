@@ -2,10 +2,10 @@ package_update: true
 package_upgrade: false
 package_reboot_if_required: true
 
-packages:
-  - git
-  - curl
-  - vim
+# packages:
+#   - git
+#   - curl
+#   - vim
 
 users:
   - default
@@ -16,10 +16,10 @@ users:
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2QVXgFtnegwHXVnxNfGL2+mQBImraGTbCKxihXRLHw vmuser
 
-runcmd:
-  - snap install microk8s --classic
-  - microk8s status --wait-ready
-  - microk8s enable dns hostpath-storage
-  - microk8s add-node | tee /home/ubuntu/join-node
+# runcmd:
+#   - snap install microk8s --classic
+#   - microk8s status --wait-ready
+#   - microk8s enable dns hostpath-storage
+#   - microk8s add-node | tee /home/ubuntu/join-node
 
-final_message: "The system is finally up, after $UPTIME seconds"
+# final_message: "The system is finally up, after $UPTIME seconds"
