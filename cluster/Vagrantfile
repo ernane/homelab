@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+nodes = [
+  { hostname: "hl-master", ip: "192.168.57.10", memory: 4096, cpus: 2 },
+  { hostname: "hl-node-1", ip: "192.168.57.20", memory: 4096, cpus: 3 },
+  { hostname: "hl-node-2", ip: "192.168.57.30", memory: 4096, cpus: 3 }
+]
+
+Vagrant.configure("2") do |config|
+  nodes.each do |node|
+    config.vm.define node[:hostname] do |node_config|
+      node_config.vm.box     = "ubuntu/focal64"
+      node_config.vm.network "private_network", ip: node[:ip]
+      node_config.vm.hostname  = node[:hostname]
+
+      node_config.vm.provider "virtualbox" do |vb|
+        vb.gui    = false
+        vb.name   = node[:hostname]
+        vb.memory = node[:memory]
+        vb.cpus   = node[:cpus]
+      end
+
+      node_config.ssh.insert_key       = false
+      node_config.ssh.private_key_path = ["~/.vagrant.d/insecure_private_key", "~/.ssh/id_rsa"]
+
+      node_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    end
+  end
+end
